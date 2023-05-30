@@ -7,7 +7,8 @@ function Header() {
 
     let dispatch = useDispatch();
 
-    const add = () => {
+    const add = (e) => {
+        e.preventDefault()
         let newTodo = {
             id: Math.floor(Math.random() * 1000),
             todos: todos
@@ -20,7 +21,7 @@ return (
   
     <>
     <div className="header">
-        <form onSubmit={add}>
+        <form onSubmit={(e)=>add(e)}>
             <input
             className="new-todo"
             placeholder="What needs to be done?"

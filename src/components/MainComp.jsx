@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 
@@ -15,7 +15,6 @@ function MainComp() {
     }
 
     const handleClick = event => {
-        // 👇️ toggle isActive state on click
         setIsActive(current => !current);
       };
 
@@ -26,7 +25,7 @@ function MainComp() {
             <label htmlFor="toggle-all">Mark all as complete</label>
             <ul className="todo-list">
                 {
-                    todoReducer && todoReducer.map((item) => <li key={item.id}>
+                    todoReducer && todoReducer.map((item) => <li key={item.id} className={isActive ? 'completed' : ''} onClick={handleClick}>
                         
                             <div className="view">
                                 <input className="toggle" type="checkbox" />
@@ -35,7 +34,6 @@ function MainComp() {
                             </div>
                         </li>)
                 }
-    {/* onClick={() => removeToDo(item.id)} */}
             </ul>
         </div>
         {/* <li className="completed">
