@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 function MainComp() {
 
-    const [isActive, setIsActive] = useState(false);
     let {todoReducer} = useSelector(state => state)
     let dispatch = useDispatch()
 
@@ -14,9 +13,12 @@ function MainComp() {
         dispatch({type:'REMOVE', payload:id})
     }
 
-    const handleClick = event => {
-        setIsActive(current => !current);
-      };
+    const handleClick = (id) => {
+      let upd_obj = todoReducer.findIndex((item => item.id == id));
+      todoReducer[upd_obj].status = !todoReducer[upd_obj].status;
+      console.log(todoReducer)
+    }
+   
 
     return (
         <>
@@ -25,13 +27,14 @@ function MainComp() {
             <label htmlFor="toggle-all">Mark all as complete</label>
             <ul className="todo-list">
                 {
-                    todoReducer && todoReducer.map((item) => <li key={item.id} className={isActive ? 'completed' : ''} onClick={handleClick}>
-                        
+                    todoReducer && todoReducer.map((item) => <li key={item.id} onClick={() => handleClick(item.id)}>
+                        {/* completed */}
                             <div className="view">
                                 <input className="toggle" type="checkbox" />
                                 <label>{item.todos}</label>
                                 <button className="destroy" onClick={() => removeToDo(item.id)} />
                             </div>
+                            
                         </li>)
                 }
             </ul>

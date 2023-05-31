@@ -11,7 +11,8 @@ function Header() {
         e.preventDefault()
         let newTodo = {
             id: Math.floor(Math.random() * 1000),
-            todos: todos
+            todos: todos,
+            status: false
         }
         dispatch({type: 'ADD', payload:newTodo})
     }

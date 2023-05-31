@@ -1,11 +1,18 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+
+
 
 function Footer() {
+  let {todoReducer} = useSelector(state => state)
+
+
   return (
     <>
     <div className="footer">
         <span className="todo-count">
-            <strong>2</strong>
+            <strong>{todoReducer.filter(item => item.status === true).length}</strong>
             items left
         </span>
         <ul className="filters">
